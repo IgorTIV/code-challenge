@@ -1,0 +1,54 @@
+%h1 Coupon Users
+
+= form_with url: reports_path, method: :get do |f|
+  .row
+    .col-sm-2
+      = f.select :coupon_name, @all_coupon_names, {prompt: 'Select Coupon', selected: params[:coupon_name]}, {class: 'form-control'}
+    .col-sm-10
+      = f.submit 'Search', class: 'btn btn-primary'
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Amount
+      %th User Emails
+      %th Total Orders
+      %th Orders Revenue
+  %tbody
+    - @coupons.each do |coupon|
+      %tr
+        %td= coupon.name
+        %td= coupon.amount
+        %td= coupon.users.map(&:email).join(', ')
+        %td= coupon.orders.length
+        %td= coupon.orders.sum(:total)
+
+%hr
+
+%h1 Sales By Product
+
+= form_with url: reports_path, method: :get do |f|
+  .row
+    .form-group.col-sm-2
+      = f.label :sales_from, 'From'
+      = f.date_field :sales_from, value: params[:sales_from], class: 'form-control'
+    .form-group.col-sm-2
+      = f.label :sales_to, 'To'
+      = f.date_field :sales_to, value: params[:sales_to], class: 'form-control'
+  .row
+    .form-group.col-sm-4
+      = f.submit 'Search', class: 'btn btn-primary'
+
+%table.table
+  %thead
+    %tr
+      %th Product Name
+      %th Sold count
+      %th Revenue
+  %tbody
+    - @sales_by_product.each do |name, count, revenue|
+      %tr
+        %td= name
+        %td= count
+        %td= revenue

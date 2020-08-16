@@ -23,6 +23,8 @@
     %dt.col-sm-2 Created at
     %dd.col-sm-10= @order.created_at
 
+%hr
+
 %h2 User
 
 %dl
@@ -32,6 +34,8 @@
   .row
     %dt.col-sm-2 Email
     %dd.col-sm-10= @order.user.email
+
+%hr
 
 %h2 Address
 
@@ -52,6 +56,8 @@
     %dt.col-sm-2 State
     %dd.col-sm-10= @order.address.state
 
+%hr
+
 %h2 Order Items
 
 %table.table
@@ -70,6 +76,8 @@
         %td= item.quantity
         %td= item.price
         %td= item.state
+
+%hr
 
 %h2 Payments
 

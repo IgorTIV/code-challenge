@@ -17,4 +17,8 @@ class Payment < ApplicationRecord
               }
 
   belongs_to :order
+
+  scope :completed, -> { where(state: COMPLETED) }
+  scope :from_date, ->(date) { where('completed_at > ?', date) }
+  scope :to_date, ->(date) { where('completed_at < ?', date) }
 end
