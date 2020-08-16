@@ -1,0 +1,91 @@
+%h1 Order Details
+
+%dl
+  .row
+    %dt.col-sm-2 Number
+    %dd.col-sm-10= @order.number
+  .row
+    %dt.col-sm-2 State
+    %dd.col-sm-10= @order.state
+  .row
+    %dt.col-sm-2 Total
+    %dd.col-sm-10= @order.total
+  .row
+    %dt.col-sm-2 Building at
+    %dd.col-sm-10= @order.building_at
+  .row
+    %dt.col-sm-2 Canceled at
+    %dd.col-sm-10= @order.canceled_at
+  .row
+    %dt.col-sm-2 Arrived at
+    %dd.col-sm-10= @order.arrived_at
+  .row
+    %dt.col-sm-2 Created at
+    %dd.col-sm-10= @order.created_at
+
+%h2 User
+
+%dl
+  .row
+    %dt.col-sm-2 Name
+    %dd.col-sm-10= @order.user.name
+  .row
+    %dt.col-sm-2 Email
+    %dd.col-sm-10= @order.user.email
+
+%h2 Address
+
+%dl
+  .row
+    %dt.col-sm-2 Address1
+    %dd.col-sm-10= @order.address.address1
+  .row
+    %dt.col-sm-2 Address2
+    %dd.col-sm-10= @order.address.address2
+  .row
+    %dt.col-sm-2 City
+    %dd.col-sm-10= @order.address.city
+  .row
+    %dt.col-sm-2 ZipCode
+    %dd.col-sm-10= @order.address.zipcode
+  .row
+    %dt.col-sm-2 State
+    %dd.col-sm-10= @order.address.state
+
+%h2 Order Items
+
+%table.table
+  %thead
+    %tr
+      %th Type
+      %th Id
+      %th Quantity
+      %th Price
+      %th State
+  %tbody
+    - @order.order_items.each do |item|
+      %tr
+        %td= item.source_type
+        %td= item.source_id
+        %td= item.quantity
+        %td= item.price
+        %td= item.state
+
+%h2 Payments
+
+%table.table
+  %thead
+    %tr
+      %th Amount
+      %th Type
+      %th State
+      %th Completed at
+      %th Refunded at
+  %tbody
+    - @order.payments.each do |payment|
+      %tr
+        %td= payment.amount
+        %td= payment.payment_type
+        %td= payment.state
+        %td= payment.completed_at
+        %td= payment.refunded_at

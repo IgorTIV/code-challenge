@@ -1,0 +1,23 @@
+%h1 Orders
+
+= form_with url: orders_path, method: :get do |form|
+  .row
+    .col-sm-2
+      = form.text_field :number, value: params[:number], class: 'form-control', placeholder: "Enter Order Number"
+    .col-sm-10
+      = form.submit 'Search', class: 'btn btn-primary'
+
+%table.table
+  %thead
+    %tr
+      %th Number
+      %th State
+      %th User Email
+      %th User Name
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= link_to order.number, order
+        %td= order.state
+        %td= order.user.email
+        %td= order.user.name
