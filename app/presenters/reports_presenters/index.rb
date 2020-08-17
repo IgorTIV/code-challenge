@@ -1,17 +1,19 @@
 module ReportsPresenters
   class Index
-    attr_reader :coupon_name, :sales_from, :sales_to
+    attr_reader :coupon_name, :sales_from, :sales_to, :coupons_page, :sales_page
 
     def initialize(params)
       @coupon_name = params[:coupon_name]
       @sales_to = params[:sales_to]
       @sales_from = params[:sales_from]
+      @coupons_page = params[:coupons_page]
+      @sales_page = params[:sales_page]
     end
 
     def coupons
       @coupons ||= begin
         scope = coupon_name.present? ? Coupon.by_name(coupon_name) : Coupon
-        scope.includes(:order_items, :orders, :users).all
+        scope.includes(:order_items, :orders, :users).page(coupons_page)
       end
     end
 
@@ -34,7 +36,8 @@ module ReportsPresenters
           .joins(order_items: { order: :payments })
           .where(order_items: { state: "sold", orders: { payments: payment_ids } })
           .group(:id)
-          .pluck('products.name', Arel.sql('COUNT(*)'), Arel.sql('SUM(order_items.price * order_items.quantity)'))
+          .select('products.*', Arel.sql('COUNT(*) AS count'), Arel.sql('SUM(order_items.price * order_items.quantity) AS revenue'))
+          .page(sales_page)
       end
     end
   end

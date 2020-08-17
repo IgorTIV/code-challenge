@@ -24,6 +24,8 @@
         %td= coupon.orders.length
         %td= coupon.orders.sum(:total)
 
+= paginate @coupons, theme: 'bootstrap', param_name: :coupons_page
+
 %hr
 
 %h1 Sales By Product
@@ -47,8 +49,10 @@
       %th Sold count
       %th Revenue
   %tbody
-    - @sales_by_product.each do |name, count, revenue|
+    - @sales_by_product.each do |sale|
       %tr
-        %td= name
-        %td= count
-        %td= revenue
+        %td= sale.name
+        %td= sale.count
+        %td= sale.revenue
+
+= paginate @sales_by_product, theme: 'bootstrap', param_name: :sales_page

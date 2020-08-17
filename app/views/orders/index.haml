@@ -26,3 +26,5 @@
           = link_to 'Details', order, class: 'btn btn-primary'
           - unless order.cancelled?
             = link_to 'Cancel Order', cancel_order_path(order), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
+
+= paginate @orders, theme: 'bootstrap'

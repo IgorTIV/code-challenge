@@ -21,6 +21,6 @@ class OrdersController < ApplicationController
   end
 
   def permitted_params
-    params.permit(:number)
+    params.permit(:number, :page)
   end
 end
