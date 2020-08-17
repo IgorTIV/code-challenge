@@ -24,4 +24,8 @@ class Order < ApplicationRecord
   def to_param
     number
   end
+
+  def cancelled?
+    state == CANCELED
+  end
 end

@@ -97,3 +97,6 @@
         %td= payment.state
         %td= payment.completed_at
         %td= payment.refunded_at
+
+- unless @order.cancelled?
+  = link_to 'Cancel Order', cancel_order_path(@order), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }

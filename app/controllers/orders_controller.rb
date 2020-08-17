@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order!, only: :show
+  before_action :find_order!, only: %w[show cancel]
 
   def index
     presenter = OrdersPresenters::Index.new(permitted_params)
@@ -7,6 +7,11 @@ class OrdersController < ApplicationController
   end
 
   def show
+  end
+
+  def cancel
+    OrdersService.new(@order).cancel
+    redirect_to orders_path, notice: "The order #{@order.number} was canceled"
   end
 
   private
