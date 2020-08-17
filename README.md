@@ -39,3 +39,6 @@ Build out the following features, your project into Github to share with Wantabl
     - Only product order items have states
   - Payments have 2 states: completed and refunded
     - refunded payments do not count towards sales totals
+
+### Deployment to Heroku
+  - [https://code-challenge-igor.herokuapp.com/](https://code-challenge-igor.herokuapp.com/)
