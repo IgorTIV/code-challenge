@@ -14,7 +14,7 @@ class OrdersService
       end
 
       order.payments.each do |payment|
-        payment.update!(state: Payment::REFUNDED)
+        payment.update!(state: Payment::REFUNDED, refunded_at: Time.now)
       end
     end
   end
