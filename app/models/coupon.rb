@@ -17,6 +17,5 @@ class Coupon < ApplicationRecord
   has_many :orders, through: :order_items
   has_many :users, through: :orders
 
-
   scope :by_name, ->(name) { where(name: name) }
 end
