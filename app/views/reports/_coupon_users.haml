@@ -1,0 +1,22 @@
+%h1 Coupon Users
+
+= render 'search_coupon_form'
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Amount
+      %th User Emails
+      %th Total Orders
+      %th Orders Revenue
+  %tbody
+    - @coupons.each do |coupon|
+      %tr
+        %td= coupon.name
+        %td= coupon.amount
+        %td= coupon.users.map(&:email).join(', ')
+        %td= coupon.orders.length
+        %td= coupon.orders.sum(:total)
+
+= paginate @coupons, theme: 'bootstrap', param_name: :coupons_page

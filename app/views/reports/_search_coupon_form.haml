@@ -1,0 +1,6 @@
+= form_with url: reports_path, method: :get, local: true do |f|
+  .row
+    .col-sm-2
+      = f.select :coupon_name, @all_coupon_names, {prompt: 'Select Coupon', selected: params[:coupon_name]}, {class: 'form-control'}
+    .col-sm-10
+      = f.submit 'Search', class: 'btn btn-primary'

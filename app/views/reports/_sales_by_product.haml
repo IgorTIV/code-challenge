@@ -1,0 +1,18 @@
+%h1 Sales By Product
+
+= render 'dates_filter_sales_by_product'
+
+%table.table
+  %thead
+    %tr
+      %th Product Name
+      %th Sold count
+      %th Revenue
+  %tbody
+    - @sales_by_product.each do |sale|
+      %tr
+        %td= sale.name
+        %td= sale.count
+        %td= sale.revenue
+
+= paginate @sales_by_product, theme: 'bootstrap', param_name: :sales_page
