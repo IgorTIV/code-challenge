@@ -1,0 +1,3 @@
+.row
+  %dt.col-sm-2= attribute.to_s.humanize
+  %dd.col-sm-10= record.public_send(attribute)

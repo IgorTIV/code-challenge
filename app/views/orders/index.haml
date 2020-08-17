@@ -1,11 +1,6 @@
 %h1 Orders
 
-= form_with url: orders_path, method: :get, local: true do |form|
-  .row
-    .col-sm-2
-      = form.text_field :number, value: params[:number], class: 'form-control', placeholder: "Enter Order Number"
-    .col-sm-10
-      = form.submit 'Search', class: 'btn btn-primary'
+= render 'search_order_form'
 
 %table.table
   %thead

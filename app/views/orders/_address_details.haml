@@ -1,0 +1,5 @@
+%h2 Address
+
+%dl
+  - %w[address1 address2 city zipcode state].each do |attribute|
+    = render 'dl_row', attribute: attribute, record: @order.address

@@ -1,0 +1,21 @@
+%h2 Payments
+
+%table.table
+  %thead
+    %tr
+      %th Amount
+      %th Type
+      %th State
+      %th Completed at
+      %th Refunded at
+  %tbody
+    - @order.payments.each do |payment|
+      %tr
+        %td= payment.amount
+        %td= payment.payment_type
+        %td= payment.state
+        %td= payment.completed_at
+        %td= payment.refunded_at
+
+- unless @order.cancelled?
+  = link_to 'Cancel Order', cancel_order_path(@order), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }

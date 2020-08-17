@@ -1,0 +1,18 @@
+%h2 Order Items
+
+%table.table
+  %thead
+    %tr
+      %th Type
+      %th Id
+      %th Quantity
+      %th Price
+      %th State
+  %tbody
+    - @order.order_items.each do |item|
+      %tr
+        %td= item.source_type
+        %td= item.source_id
+        %td= item.quantity
+        %td= item.price
+        %td= item.state
