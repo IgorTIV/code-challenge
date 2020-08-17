@@ -34,7 +34,7 @@ module ReportsPresenters
       @sales_by_product ||= begin
         Product
           .joins(order_items: { order: :payments })
-          .where(order_items: { state: "sold", orders: { payments: payment_ids } })
+          .where(order_items: { state: OrderItem::SOLD, orders: { payments: payment_ids } })
           .group(:id)
           .select('products.*', Arel.sql('COUNT(*) AS count'), Arel.sql('SUM(order_items.price * order_items.quantity) AS revenue'))
           .page(sales_page)

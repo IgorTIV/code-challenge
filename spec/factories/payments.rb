@@ -4,5 +4,9 @@ FactoryBot.define do
     state { 'refunded' }
     payment_type { 'CreditCard' }
     amount { 31 }
+
+    trait :completed do
+      state { 'completed' }
+    end
   end
 end

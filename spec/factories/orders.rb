@@ -5,6 +5,7 @@ FactoryBot.define do
     total { 50 }
     address
     user { address.user }
+    building_at { Time.current }
 
   end
 end
